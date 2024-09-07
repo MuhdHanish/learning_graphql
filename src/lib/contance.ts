@@ -10,3 +10,16 @@ export const books = [
     { id: '9', title: 'Crime and Punishment', genre: 'Psychological Fiction' },
     { id: '10', title: 'The Odyssey', genre: 'Epic Poetry' }
 ];
+
+export const authors = [
+    { id: '1', name: 'F. Scott Fitzgerald', rating: 9 },
+    { id: '2', name: 'George Orwell', rating: 5 },
+    { id: '3', name: 'Harper Lee', rating: 0 },
+    { id: '4', name: 'J.D. Salinger', rating: 7 },
+    { id: '5', name: 'Herman Melville', rating: 8 },
+    { id: '6', name: 'Jane Austen', rating: 3 },
+    { id: '7', name: 'Leo Tolstoy', rating: 6 },
+    { id: '8', name: 'J.R.R. Tolkien', rating: 8 },
+    { id: '9', name: 'Fyodor Dostoevsky', rating: 4 },
+    { id: '10', name: 'Homer', rating: 1 }
+];
