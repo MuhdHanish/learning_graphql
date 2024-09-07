@@ -1,7 +1,7 @@
-import { GraphQLInt, GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
+import { GraphQLInt, GraphQLList, GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
 import { authors, books } from "../lib/contance";
 
-const BookType = new GraphQLObjectType({
+const BookType: GraphQLObjectType = new GraphQLObjectType({
     name: "BookType",
     fields: () => ({
         id: {
@@ -22,7 +22,7 @@ const BookType = new GraphQLObjectType({
     })
 });
 
-const AuthorType = new GraphQLObjectType({
+const AuthorType: GraphQLObjectType = new GraphQLObjectType({
     name: "AuthorType",
     fields: () => ({
         id: {
@@ -33,11 +33,17 @@ const AuthorType = new GraphQLObjectType({
         },
         rating: {
             type: GraphQLInt,
+        },
+        books: {
+            type: new GraphQLList(BookType),
+            resolve(parent, args) {
+                return books.filter(book => book.author === parent.id)
+            }
         }
     })
 });
 
-const RootQueryType = new GraphQLObjectType({
+const RootQueryType: GraphQLObjectType = new GraphQLObjectType({
     name: "RootQueryType",
     fields: {
         book: {
