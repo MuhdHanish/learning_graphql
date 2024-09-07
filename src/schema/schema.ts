@@ -1,4 +1,5 @@
 import { GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
+import { books } from "../lib/contance";
 
 const BookType = new GraphQLObjectType({
     name: "BookType",
@@ -7,6 +8,9 @@ const BookType = new GraphQLObjectType({
             type: GraphQLString,
         },
         title: {
+            type: GraphQLString,
+        },
+        genre: {
             type: GraphQLString,
         }
     })
@@ -22,12 +26,9 @@ const RootQueryType = new GraphQLObjectType({
                     type: GraphQLString
                 }
             },
-            resolve(parent, args) {
+            resolve(parent, { id }) {
                 // Where we fetch the data from database.
-                return {
-                    id: '1',
-                    title: 'The Book'
-                }
+                return books.filter(book => book.id === id)[0];
             }
         }
     }
