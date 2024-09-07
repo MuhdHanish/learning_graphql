@@ -1,5 +1,5 @@
-import { GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
-import { books } from "../lib/contance";
+import { GraphQLInt, GraphQLObjectType, GraphQLSchema, GraphQLString } from "graphql";
+import { authors, books } from "../lib/contance";
 
 const BookType = new GraphQLObjectType({
     name: "BookType",
@@ -16,6 +16,21 @@ const BookType = new GraphQLObjectType({
     })
 });
 
+const AuthorType = new GraphQLObjectType({
+    name: "AuthorType",
+    fields: () => ({
+        id: {
+            type: GraphQLString,
+        },
+        name: {
+            type: GraphQLString,
+        },
+        rating: {
+            type: GraphQLInt,
+        }
+    })
+});
+
 const RootQueryType = new GraphQLObjectType({
     name: "RootQueryType",
     fields: {
@@ -27,8 +42,18 @@ const RootQueryType = new GraphQLObjectType({
                 }
             },
             resolve(parent, { id }) {
-                // Where we fetch the data from database.
                 return books.filter(book => book.id === id)[0];
+            }
+        },
+        author: {
+            type: AuthorType,
+            args: {
+                id: {
+                    type: GraphQLString
+                }
+            },
+            resolve(parent, { id }) {
+                return authors.filter(book => book.id === id)[0];
             }
         }
     }
