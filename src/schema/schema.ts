@@ -25,7 +25,7 @@ const RootQueryType = new GraphQLObjectType({
             resolve(parent, args) {
                 // Where we fetch the data from database.
                 return {
-                    id: new Date().getSeconds().toString(),
+                    id: '1',
                     title: 'The Book'
                 }
             }
